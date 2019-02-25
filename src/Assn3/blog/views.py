@@ -12,7 +12,10 @@ def index(request):
     })
 
 def archive(request):
-    return HttpResponse('TODO: Create Archive view')
+    latest_blog_list = Blog.objects.order_by('-pub_date_blog')
+    return render(request, 'blog/index.html', {
+        'latest_blog_list': latest_blog_list
+    })
 
 def entry(request):
     return HttpResponse('TODO: Create Entry view')
@@ -20,7 +23,7 @@ def entry(request):
 def nuke(request):
     for b in Blog.objects.all():
         b.delete()
-    return HttpResponse('The database is clean')
+    return HttpResponseRedirect(reverse('blog:index'))
 
 def init(request):
     nuke(request)
@@ -31,4 +34,4 @@ def init(request):
         for j in range(3):
             c = Comment(blog=b, nickname="BlogCommentor"+str(j), email_address='emailaddress@gmail.com', pub_date_comment=timezone.now(), comment_content='Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit')
             c.save()
-    return HttpResponse('The database has been initialized')
+    return HttpResponseRedirect(reverse('blog:index'))
