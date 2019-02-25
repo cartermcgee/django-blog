@@ -4,7 +4,7 @@ class Blog(models.Model):
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=35)
     pub_date_blog = models.DateTimeField('date published')
-    blog_content = models.CharField()
+    blog_content = models.CharField(max_length=6000)
     
 class Comment(models.Model):
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE)

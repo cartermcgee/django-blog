@@ -6,10 +6,16 @@ from django.utils import timezone
 
 
 def index(request):
-    latest_blog_list = Blog.objects.order_by('-pub_date_blog')[]
+    latest_blog_list = Blog.objects.order_by('-pub_date_blog')[:3]
     return render(request, 'blog/index.html', {
         'latest_blog_list': latest_blog_list
     })
+
+def archive(request):
+    return HttpResponse('TODO: Create Archive view')
+
+def entry(request):
+    return HttpResponse('TODO: Create Entry view')
 
 def nuke(request):
     for b in Blog.objects.all():
