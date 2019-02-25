@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+  <head>
+     <meta charset="utf-8"/>
+     <link rel="stylesheet" href="{% static 'blog/style.css' %}" />
+     <title>Blog Home</title>
+  </head>
+  <body>
+      <h1>Blog</h1>
+      
+      {% if latest_blog_list %}
+        {% for blog in latest_blog_list %}
+            <h2>{{blog.title}} by {{blog.author}}</h2>
+            <p>{{blog.blog_content | truncatewords:200}}</p>
+            <p>TODO: Add number of comments</p>
+        {% endfor %}
+      {% else %}
+        <p>There are no blogs available</p>
+      {% endif %}
+      
+      <h3>View All</h3>
+        <ul>
+          <li><a href="{% url 'archive' %}">Archive</a></li>
+        </ul>
+      
+  </body>
+</html>
