@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+{% load static %}
+
 <html lang="en">
   <head>
      <meta charset="utf-8"/>
@@ -6,5 +8,29 @@
      <title>Entry</title>
   </head>
   <body>
+      
+      {% if blog %}
+      <div>
+          
+        <h1>{{ blog.title }} by {{ blog.author }}</h1>
+          
+        <h4>Published on {{ blog.pub_date_blog }}</h4>
+          
+        <p>{{ blog.blog_content }}</p>
+          
+      </div>
+      
+      <h3><a href="{% url 'blog:index' %}">Back to home</a></h3>
+      
+      <h3>Comments</h3>
+     
+      {% for comment in blog.comment_set.all%}
+      <div>
+          <h4>{{ comment.nickname }} ({{ comment.email_address }}) commented on {{ comment.pub_date_comment }}</h4>
+          <p>{{ comment.comment_content }}</p>
+      </div>
+      {% endfor %}
+      {% endif %}
+    
   </body>
 </html>

@@ -14,17 +14,16 @@
       
         {% for blog in latest_blog_list %}
       
-            <h2>{{blog.title}} by {{blog.author}}</h2>
-      
-            <p>{{blog.blog_content | truncatewords:200}}</p>
-      
-            {% for b in blogs %}
-                {% if b == blog %}
-      
-                    <p>{{b.number_of_comments}} comments</p>
-      
-                {% endif %}
-            {% endfor %}
+            <div>
+                
+                <h2><a href="{% url 'blog:entry' blog.id %}">{{blog.title}} by {{blog.author}}</a></h2>
+                <p>{{blog.blog_content | truncatewords:200}}</p>
+                {% for b in blogs %}
+                    {% if b == blog %}
+                        <p>{{b.number_of_comments}} comments</p>
+                    {% endif %}
+                {% endfor %}
+            </div>
       
         {% endfor %}
       

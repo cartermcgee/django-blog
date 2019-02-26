@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from .models import Blog, Comment
 from django.utils import timezone
+from django.http import Http404
 from django.db.models import Count
 
 
@@ -22,8 +23,11 @@ def archive(request):
         'blogs': blogs
     })
 
-def entry(request):
-    return HttpResponse('TODO: Create Entry view')
+def entry(request, blog_id):
+    blog = get_object_or_404(Blog, pk=blog_id)
+    return render(request, 'blog/entry.html', {
+        'blog': blog
+    })    
 
 def nuke(request):
     for b in Blog.objects.all():
