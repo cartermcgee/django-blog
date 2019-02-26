@@ -3,18 +3,23 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from .models import Blog, Comment
 from django.utils import timezone
+from django.db.models import Count
 
 
 def index(request):
+    blogs = Blog.objects.annotate(number_of_comments=Count('comment'))
     latest_blog_list = Blog.objects.order_by('-pub_date_blog')[:3]
     return render(request, 'blog/index.html', {
-        'latest_blog_list': latest_blog_list
+        'latest_blog_list': latest_blog_list,
+        'blogs': blogs
     })
 
 def archive(request):
+    blogs = Blog.objects.annotate(number_of_comments=Count('comment'))
     latest_blog_list = Blog.objects.order_by('-pub_date_blog')
     return render(request, 'blog/index.html', {
-        'latest_blog_list': latest_blog_list
+        'latest_blog_list': latest_blog_list,
+        'blogs': blogs
     })
 
 def entry(request):

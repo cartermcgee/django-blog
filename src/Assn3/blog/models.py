@@ -6,6 +6,9 @@ class Blog(models.Model):
     pub_date_blog = models.DateTimeField('date published')
     blog_content = models.CharField(max_length=6000)
     
+    def __str__(self):
+        return self.title
+    
 class Comment(models.Model):
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
     nickname = models.CharField(max_length=35)

@@ -11,13 +11,27 @@
       <h1>Blog</h1>
       
       {% if latest_blog_list %}
+      
         {% for blog in latest_blog_list %}
+      
             <h2>{{blog.title}} by {{blog.author}}</h2>
+      
             <p>{{blog.blog_content | truncatewords:200}}</p>
-            <p>TODO: Add number of comments</p>
+      
+            {% for b in blogs %}
+                {% if b == blog %}
+      
+                    <p>{{b.number_of_comments}} comments</p>
+      
+                {% endif %}
+            {% endfor %}
+      
         {% endfor %}
+      
       {% else %}
+      
         <p>There are no blogs available</p>
+      
       {% endif %}
       
       
