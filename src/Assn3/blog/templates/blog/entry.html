@@ -24,7 +24,7 @@
       
       <h3 id="commenttitle">Comments</h3>
      
-      {% for comment in blog.comment_set.all%}
+      {% for comment in blog.comment_set.all reversed %}
       <div class="boxed">
           <h4>{{ comment.nickname }} ({{ comment.email_address }}) commented on {{ comment.pub_date_comment }}</h4>
           <p>{{ comment.comment_content }}</p>
