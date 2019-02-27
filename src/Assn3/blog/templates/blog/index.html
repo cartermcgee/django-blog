@@ -4,17 +4,17 @@
 <html lang="en">
   <head>
      <meta charset="utf-8"/>
-     <link rel="stylesheet" href="{% static 'blog/style.css' %}" />
+     <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}" />
      <title>Blog Home</title>
   </head>
   <body>
-      <h1>Blog</h1>
+      <h1 id="titlepage">Blog Home</h1>
       
       {% if latest_blog_list %}
       
         {% for blog in latest_blog_list %}
       
-            <div>
+            <div class="boxed">
                 
                 <h2><a href="{% url 'blog:entry' blog.id %}">{{blog.title}} by {{blog.author}}</a></h2>
                 <p>{{blog.blog_content | truncatewords:200}}</p>
@@ -34,7 +34,7 @@
       {% endif %}
       
       
-        <h2><a href="{% url 'blog:archive' %}">Archive</a></h2>
+        <h2><a href="{% url 'blog:archive' %}">Archived view</a></h2>
       
   </body>
 </html>

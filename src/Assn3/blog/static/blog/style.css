@@ -1,8 +1,32 @@
-*{
+* {
     font-family: sans-serif;
 }
 
-h1{
-    align-content: center;
-    
+#titlepage {
+    font-size: 60px;
+}
+
+div.boxed, #blogcontent {
+    border-style: solid;
+    border-radius: 15px;
+    background-color: aliceblue;
+    margin-top: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+h1 {
+    text-align: center;
+    color: navy;
+}
+
+a {
+    color: navy;
+}
+
+#commenttitle {
+    font-size: 30px;
+    text-decoration: underline;
 }
